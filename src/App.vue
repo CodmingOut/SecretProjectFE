@@ -1,32 +1,71 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+	<md-content class="page-container" md-theme="primary">
+		<md-app md-mode="overlap" md-waterfall>
+			<md-app-toolbar class="md-primary md-large">
+				<div class="md-toolbar-row">
+					<md-button class="md-icon-button" @click="menuVisible = !menuVisible">
+						<md-icon>menu</md-icon>
+					</md-button>
+
+					<span class="md-title" @click="$router.push({name: 'Home'}).catch(() => {});" style="cursor: pointer;">멀웨어 메일 탐지</span>
+				</div>
+			</md-app-toolbar>
+
+			<md-app-drawer :md-active.sync="menuVisible">
+				<md-toolbar class="md-transparent" md-elevation="1">
+					<h3>메뉴</h3>
+				</md-toolbar>
+
+				<md-list>
+					<md-list-item @click="$router.push({name: 'Home'}).catch(() => {})">
+						<md-icon>home</md-icon>
+						<span class="md-list-item-text">홈</span>
+					</md-list-item>
+				</md-list>
+
+				<md-list>
+					<md-list-item @click="$router.push({name: 'Recv'}).catch(() => {})">
+						<md-icon>mail</md-icon>
+						<span class="md-list-item-text">받은 메일함</span>
+					</md-list-item>
+				</md-list>
+			</md-app-drawer>
+
+			<md-app-content>
+				<router-view></router-view>
+			</md-app-content>
+		</md-app>
+	</md-content>
 </template>
 
+<script>
+export default {
+	data: () => ({
+		menuVisible: false
+	}),
+};
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+@import "~vue-material/dist/theme/engine";
+
+@include md-register-theme("primary", (
+		primary: #d81b60,
+		accent: #d81b60
+));
+
+@import "~vue-material/dist/theme/all";
+</style>
+
+<style>
+@import url('https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.min.css');
+
+* {
+	font-family: 'NanumSquareRound', sans-serif;
+	line-height: 30px;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+.page-container > div {
+	min-height: 100vh;
 }
 </style>
