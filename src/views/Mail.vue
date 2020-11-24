@@ -15,8 +15,8 @@
 	<md-divider></md-divider>
 	<div v-if="mailData.fileList.length > 0" class="md-triple-line">
 		<div v-for="file of mailData.fileList" :key="file.id" >
-			<a :href="`/dn/${mailId}/${file.id}`" @click="chkFile(file.id, $event)">
-			{{ file.filename }}
+			<a :href="`/dn/${mailId}/${file.id}`" target="_blank" @click="chkFile(file.id, $event)">
+			{{ file.name }}
 			</a>
 		</div>
 		<md-divider></md-divider>

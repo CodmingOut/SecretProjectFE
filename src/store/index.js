@@ -18,7 +18,6 @@ export default new Vuex.Store({
       let ret = (await axios.get(`${location.origin}/api/list`, {
         json: true
       })).data;
-      await new Promise(r => setTimeout(() => r(), 1000));
       commit('saveMail', ret);
     }
   },
