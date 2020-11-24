@@ -32,7 +32,11 @@
 			</md-app-drawer>
 
 			<md-app-content>
-				<router-view></router-view>
+				<router-view v-if="show"></router-view>
+				<div v-else style="display: flex; justify-content: center; flex-direction: column;">
+					<h1>메일을 로딩 중입니다.</h1>
+					<md-progress-bar md-mode="indeterminate"></md-progress-bar>
+				</div>
 			</md-app-content>
 		</md-app>
 	</md-content>
@@ -41,8 +45,12 @@
 <script>
 export default {
 	data: () => ({
-		menuVisible: false
+		menuVisible: false,
+		show: false
 	}),
+	created() {
+		this.$store.dispatch('fetchMail').finally(() => this.show = true);
+	}
 };
 </script>
 
