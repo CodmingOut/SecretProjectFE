@@ -73,6 +73,10 @@ export default {
 	line-height: 30px;
 }
 
+::selection {
+	background: rgba(255, 92, 141, .75) !important;
+}
+
 .page-container > div {
 	min-height: 100vh;
 }

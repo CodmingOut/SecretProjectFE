@@ -14,6 +14,7 @@
 	</div>
 	<md-divider></md-divider>
 	<div v-if="mailData.fileList.length > 0" class="md-triple-line">
+		<h3>첨부 파일</h3>
 		<div v-for="file of mailData.fileList" :key="file.id" >
 			<a :href="`/dn/${mailId}/${file.id}`" target="_blank" @click="chkFile(file.id, $event)">
 			{{ file.name }}
